@@ -3,7 +3,7 @@ import SidebarNav from './SidebarNav';
 import BusinessIcon from '@material-ui/icons/Business';
 import { makeStyles } from '@material-ui/core/styles';
 import LocalShipping from '@material-ui/icons/LocalShipping';
-import { AccountCircle, Note, OpenWith, PanTool, Store, Work } from '@material-ui/icons';
+import { AccountCircle, Note, OpenWith, Store, Work } from '@material-ui/icons';
 
 const drawerWidth = 250;
 
