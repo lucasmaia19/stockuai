@@ -1,9 +1,9 @@
-import { AppBar, Button, IconButton, MenuItem, Toolbar, Typography } from '@material-ui/core'
-import React from 'react'
+import { AppBar, IconButton, Toolbar, Typography, Button } from '@material-ui/core'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
-import { AccountCircle } from '@material-ui/icons';
+import MenuOptions from './MenuOptions';
+import Profile from './Profile';
 
 const drawerWidth = 250;
 
@@ -44,24 +44,11 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-function TopBar({ onSideBarOpen, ...rest }) {
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const redirectProfile = () => {
-        handleClose()
-        window.location.href = "/profile";
-    }
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+function TopBar({ history, onSideBarOpen, ...rest }) {
 
     const classes = useStyles()
+
+    const [anchorEl, setAnchorEl] = useState(undefined)
 
     return (
         <>
@@ -72,22 +59,12 @@ function TopBar({ onSideBarOpen, ...rest }) {
                     </IconButton>
                     <Typography variant="h1" className={classes.title}>STOCK UAI</Typography>
 
-
-                    <Button className={classes.perfil} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                        Perfil
-                    </Button>
-                    <AccountCircle />
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
+                    <Profile setAnchorEl={(e) => setAnchorEl(e.currentTarget)} />
+                    <MenuOptions
                         open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={redirectProfile}>Meu Perfil</MenuItem>
-                        <MenuItem onClick={handleClose}>Sair</MenuItem>
-                    </Menu>
-
+                        anchorEl={anchorEl}
+                        setAnchorEl={() => setAnchorEl(undefined)}
+                    />
 
                 </Toolbar>
 

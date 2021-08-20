@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import PageRouter from './components/PageRouter';
 import Minimal from './layout/Minimal';
 import Main from './layout/Main';
@@ -17,10 +17,12 @@ import Profile from './views/Profile';
 function Routes() {
   return (
     <Switch>
+      <Redirect exact from="/" to="/login" />
       <PageRouter exact isPrivate path="/Login" Layout={Minimal}>
         <SignIn />
       </PageRouter>
 
+      <Redirect exact from="/home" to="/product-register" />
       <PageRouter exact isPrivate path="/product-register" Layout={Main} >
         <RegisterProcuct />
       </PageRouter>

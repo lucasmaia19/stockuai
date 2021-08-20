@@ -15,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     content: {
-        minHeight: '100%',
+        height: '82vh',
         paddingLeft: 250,
         paddingTop: 38,
         display: 'flex',
-        justifyContent: 'center'
-        
+        justifyContent: 'center',
+        backgroundColor: '#FBFCF9'
+
     },
     shiftContent: {
         paddingLeft: 0,
@@ -50,7 +51,9 @@ function Main({ children, ...props }) {
             <SideBar variant={
                 isDesktop ? 'persistent' : 'temporary'
             }
-                open={openSideBar} />
+                open={openSideBar}
+                onClose={() => setOpenSideBar(false)}
+            />
 
             <main className={classes.content}>
                 {cloneElement(children, { ...props })}
