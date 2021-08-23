@@ -1,17 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef } from 'react';
+import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { TextField } from '@material-ui/core';
-import ModalProductRegister from '../../components/ComponentModal/ModalProductRegister';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         minWidth: '950px',
-        boxShadow: '5px 5px 10px rgb(220, 222, 212)',
-        padding: '2rem 0'
+        boxShadow: '5px 5px 10px rgb(220, 222, 212)'
     },
     bullet: {
         display: 'inline-block',
@@ -29,8 +26,7 @@ const useStyles = makeStyles((theme) => ({
     buttonBase: {
         display: 'flex',
         justifyContent: 'flex-end',
-        marginButtom: '1rem',
-
+        padding: '0 1rem 1rem 1remX'
     },
     button: {
         backgroundColor: '#ff7700',
@@ -40,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContent: {
         paddingRight: '0.5rem',
+        margin: '0'
     },
     titleProduct: {
         fontSize: '1.5rem',
@@ -48,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     cardCont: {
         [theme.breakpoints.down('xs')]: { flexWrap: 'wrap', },
         flexWrap: 'nowrap',
-        padding: '0 0 0 1rem'
     },
     titleAndButton: {
         display: 'flex',
@@ -57,60 +53,45 @@ const useStyles = makeStyles((theme) => ({
     },
     modalClasses: {
         backgroundColor: '#FFFFFF',
-        height: '250px',
         width: '800px',
         borderRadius: '5px'
     },
     btAdicionar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        //padding: '0 1rem 1rem 1remX'
+        marginTop: '2rem'
     },
     inputContent: {
         display: 'flex',
         justifyContent: 'space-around'
     },
+    faixaTitle: {
+        backgroundColor: '#ff7700'
+    },
+    typographyTittle: {
+        color: '#FFFFFF',
+        fontSize: '0.9rem',
+        fontWeight: 'bold',
+        padding: '0.5rem 0 0.5rem 1rem'
+    },
+    inputAndButton: {
+        padding: '2rem 0'
+    }
 }));
 
-function RegisterProduct() {
-
-    const outSideRef = useRef()
-
-    useEffect(() => {
-        const handleClickOutside = (e) => {
-            if (outSideRef.current && !outSideRef.current.contains(e.target)) {
-                setOpenModal(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+function ModalProductRegister({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-    const [openModal, setOpenModal] = useState(false)
-
-    const [count, setCount] = useState(0);
 
     return (
-        <>
-            <div>
-                <div className={classes.titleAndButton}>
-                    <Typography className={classes.titleProduct}>
-                        Cadastro de Produto
-                    </Typography>
 
-                    <Button className={classes.button}
-                        variant="contained"
-                        onClick={() => setOpenModal(true)}
-                    >Criar
-                    </Button>
+        <Modal open={openModal}>
+            <div className={classes.modalClasses} ref={ref}>
+                <div className={classes.faixaTitle}>
+                    <Typography className={classes.typographyTittle}>Inserir Produto</Typography>
                 </div>
-
-                <Card className={classes.root} variant="outlined">
-                    <CardContent className={classes.cardCont}>
+                <div className={classes.inputAndButton}>
+                    <div className={classes.inputContent}>
                         <TextField className={classes.cardContent}
                             variant="outlined"
                             margin="normal"
@@ -130,9 +111,10 @@ function RegisterProduct() {
                             id="email"
                             label="Descrição"
                             name="usuario"
+                            autoComplete="email"
                             autoFocus
                         />
-                        <TextField
+                        <TextField className={classes.cardContent}
                             variant="outlined"
                             margin="normal"
                             size="small"
@@ -143,18 +125,19 @@ function RegisterProduct() {
                             autoComplete="email"
                             autoFocus
                         />
-                    </CardContent>
-                    <div className={classes.buttonBase}>
+                    </div>
+                    <div className={classes.btAdicionar}>
                         <Button className={classes.button}
                             variant="contained"
-                        >Buscar
+                        >Adicionar
                         </Button>
+
                     </div>
-                </Card>
-                <ModalProductRegister openModal={openModal} ref={outSideRef} />
+                </div>
             </div>
-        </>
-    );
+        </Modal>
+
+    )
 }
 
-export default RegisterProduct
+export default forwardRef(ModalProductRegister);
