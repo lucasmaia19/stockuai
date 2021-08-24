@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ModalMerchandiseRegister({ openModal, setOpenModal }, ref) {
+function ModalControlAccessRegister({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
 
@@ -126,41 +126,29 @@ function ModalMerchandiseRegister({ openModal, setOpenModal }, ref) {
         <Modal open={openModal}>
             <div className={classes.modalClasses} ref={ref}>
                 <div className={classes.faixaTitle}>
-                    <Typography className={classes.typographyTittle}>Inserir Mercadoria</Typography>
+                    <Typography className={classes.typographyTittle}>Inserir Controle de Acesso</Typography>
                 </div>
                 <div className={classes.inputAndButton}>
                     <div className={classes.inputContent}>
                         <TextField
-                            type="number"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Codigo da mercadoria"
+                            label="Tipo do usuário"
                             name="usuario"
                             autoFocus
                         />
                         <TextField
-                            type="number"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Unidade de medida"
-                            name="usuario"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            type="number"
-                            variant="outlined"
-                            margin="normal"
-                            size="small"
-                            required
-                            id="email"
-                            label="Quantidade"
+                            label="Nome do Usuario"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
@@ -172,7 +160,19 @@ function ModalMerchandiseRegister({ openModal, setOpenModal }, ref) {
                             size="small"
                             required
                             id="email"
-                            label="Empresa"
+                            label="E-mail"
+                            name="usuario"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            type="number"
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            required
+                            id="email"
+                            label="Telefone"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
@@ -197,4 +197,4 @@ function ModalMerchandiseRegister({ openModal, setOpenModal }, ref) {
     )
 }
 
-export default forwardRef(ModalMerchandiseRegister);
+export default forwardRef(ModalControlAccessRegister);

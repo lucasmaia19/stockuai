@@ -48,7 +48,14 @@ const useStyles = makeStyles((theme) => ({
     cardCont: {
         [theme.breakpoints.down('xs')]: { flexWrap: 'wrap', },
         flexWrap: 'nowrap',
-        padding: '0 0 0 1rem'
+        padding: '0 0 0 1rem',
+
+        '& input': {
+            '&::-webkit-inner-spin-button': {
+                '-webkit-appearance': 'none',
+                margin: 0,
+            },
+        },
     },
     titleAndButton: {
         display: 'flex',
@@ -76,18 +83,6 @@ function RegisterProvider() {
 
     const outSideRef = useRef()
 
-    useEffect(() => {
-        const handleClickOutside = (e) => {
-            if (outSideRef.current && !outSideRef.current.contains(e.target)) {
-                setOpenModal(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
     const [openModal, setOpenModal] = useState(false)
@@ -112,6 +107,7 @@ function RegisterProvider() {
                 <Card className={classes.root} variant="outlined">
                     <CardContent className={classes.cardCont}>
                         <TextField className={classes.cardContent}
+                            type="number"
                             variant="outlined"
                             margin="normal"
                             size="small"
@@ -130,7 +126,7 @@ function RegisterProvider() {
                         </Button>
                     </div>
                 </Card>
-                <ModalProviderRegister openModal={openModal} ref={outSideRef} />
+                <ModalProviderRegister openModal={openModal} setOpenModal={setOpenModal} />
             </div>
         </>
     );

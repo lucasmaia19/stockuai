@@ -76,6 +76,12 @@ const useStyles = makeStyles((theme) => ({
     },
     inputAndButton: {
         padding: '2rem 0'
+    },
+    buttonCancelar: {
+        backgroundColor: '#4D5989',
+        color: '#FFFFFF',
+        marginRight: '20px',
+        '&:hover': { backgroundColor: '#434F7D' }
     }
 }));
 
@@ -132,6 +138,11 @@ function ModalProductRegister({ openModal, setOpenModal }, ref) {
                         >Adicionar
                         </Button>
 
+                        <Button className={classes.buttonCancelar}
+                            variant="contained"
+                            onClick={() => setOpenModal(false)}
+                        >Cancelar
+                        </Button>
                     </div>
                 </div>
             </div>

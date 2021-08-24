@@ -3,8 +3,8 @@ import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Accordion, AccordionDetails, AccordionSummary, TextareaAutosize, TextField } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,8 +64,11 @@ const useStyles = makeStyles((theme) => ({
     },
     inputContent: {
         display: 'flex',
-        justifyContent: 'space-around',
         flexWrap: 'wrap',
+
+        '& > div': {
+            marginLeft: '1rem'
+        },
 
         '& input': {
             '&::-webkit-inner-spin-button': {
@@ -73,10 +76,10 @@ const useStyles = makeStyles((theme) => ({
                 margin: 0,
             },
         },
+
         '& textarea': {
             width: '195px'
         }
-
     },
     faixaTitle: {
         backgroundColor: '#ff7700'
@@ -115,7 +118,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ModalProviderRegister({ openModal, setOpenModal }, ref) {
+const options = [
+    {
+        title: 'Unitário',
+    },
+    {
+        title: 'Caixa'
+    }
+]
+
+function ModalMovementEntrad({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
 
@@ -124,174 +136,102 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
         <Modal open={openModal}>
             <div className={classes.modalClasses} ref={ref}>
                 <div className={classes.faixaTitle}>
-                    <Typography className={classes.typographyTittle}>Inserir Fornecedor</Typography>
+                    <Typography className={classes.typographyTittle}>Entrada de estoque</Typography>
                 </div>
                 <div className={classes.inputAndButton}>
                     <div className={classes.inputContent}>
                         <TextField
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Nome Fantasia"
-                            name="usuario"
-                            autoFocus
-                        />
-                        <TextField
-                            variant="outlined"
-                            margin="normal"
-                            size="small"
-                            required
-                            id="email"
-                            label="Razão Social"
+                            label="Empresa de entrada"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
                         <TextField
-                            type="number"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="CNPJ"
+                            label="Fornecedor"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
                         <TextField
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Endereço"
+                            label="Produto"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
                         <TextField
-                            type="number"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Telefone"
+                            label="Mercadoria"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
                         <TextField
-                            type="email"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="E-mail"
+                            label="Quantidade"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
+
                         <TextField
-                            type="email"
+                            type="text"
                             variant="outlined"
                             margin="normal"
                             size="small"
                             required
                             id="email"
-                            label="Setor"
+                            label="Unitario ou caixa"
                             name="usuario"
                             autoComplete="email"
                             autoFocus
                         />
-                        <TextField
-                            type="email"
-                            variant="outlined"
-                            margin="normal"
-                            size="small"
-                            required
-                            id="email"
-                            label="Empresa"
-                            name="usuario"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            multiline
-                            rows={2}
-                            rowsMax={4}
-                            type="textarea"
-                            variant="outlined"
-                            margin="normal"
-                            size="small"
-                            required
-                            id="email"
-                            label="Observações"
-                            name="usuario"
-                            autoComplete="email"
-                            autoFocus
-                        />
+
+                        <Autocomplete
+                            type="select"
+                            id="combo-box-demo"
+                            options={options}
+                            getOptionLabel={(option) => option.title}
+                            style={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                        >
+
+                        </Autocomplete>
 
                     </div>
-
-                    <Accordion className={classes.accordion}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography className={classes.heading}>Contatos da Empresa</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails className={classes.accordionDetails}>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                size="small"
-                                required
-                                id="email"
-                                label="Nome"
-                                name="usuario"
-                                autoComplete="email"
-                                autoFocus
-                            />
-                            <TextField
-                                type="number"
-                                variant="outlined"
-                                margin="normal"
-                                size="small"
-                                required
-                                id="email"
-                                label="Email do contato"
-                                name="usuario"
-                                autoComplete="email"
-                                autoFocus
-                            />
-                            <TextField
-                                type="email"
-                                variant="outlined"
-                                margin="normal"
-                                size="small"
-                                required
-                                id="email"
-                                label="Telefone de contato"
-                                name="usuario"
-                                autoComplete="email"
-                                autoFocus
-                            />
-
-                        </AccordionDetails>
-                    </Accordion>
 
                     <div className={classes.btAdicionar}>
                         <Button className={classes.button}
                             variant="contained"
-                        >Adicionar
+                        >Salvar
                         </Button>
-
                         <Button className={classes.buttonCancelar}
                             variant="contained"
                             onClick={() => setOpenModal(false)}
@@ -305,4 +245,4 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
     )
 }
 
-export default forwardRef(ModalProviderRegister);
+export default forwardRef(ModalMovementEntrad);

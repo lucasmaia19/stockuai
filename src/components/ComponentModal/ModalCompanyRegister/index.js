@@ -64,8 +64,11 @@ const useStyles = makeStyles((theme) => ({
     },
     inputContent: {
         display: 'flex',
-        justifyContent: 'space-around',
         flexWrap: 'wrap',
+
+        '& > div': {
+            marginLeft: '1rem'
+        },
 
         '& input': {
             '&::-webkit-inner-spin-button': {
@@ -73,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
                 margin: 0,
             },
         },
-        '& textarea': {
+        '& textarea' : {
             width: '195px'
         }
 
@@ -115,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ModalProviderRegister({ openModal, setOpenModal }, ref) {
+function ModalCompanyRegister({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
 
@@ -124,7 +127,7 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
         <Modal open={openModal}>
             <div className={classes.modalClasses} ref={ref}>
                 <div className={classes.faixaTitle}>
-                    <Typography className={classes.typographyTittle}>Inserir Fornecedor</Typography>
+                    <Typography className={classes.typographyTittle}>Inserir Empresa</Typography>
                 </div>
                 <div className={classes.inputAndButton}>
                     <div className={classes.inputContent}>
@@ -209,18 +212,6 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
                             autoFocus
                         />
                         <TextField
-                            type="email"
-                            variant="outlined"
-                            margin="normal"
-                            size="small"
-                            required
-                            id="email"
-                            label="Empresa"
-                            name="usuario"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
                             multiline
                             rows={2}
                             rowsMax={4}
@@ -291,12 +282,12 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
                             variant="contained"
                         >Adicionar
                         </Button>
-
                         <Button className={classes.buttonCancelar}
                             variant="contained"
                             onClick={() => setOpenModal(false)}
                         >Cancelar
                         </Button>
+
                     </div>
                 </div>
             </div>
@@ -305,4 +296,4 @@ function ModalProviderRegister({ openModal, setOpenModal }, ref) {
     )
 }
 
-export default forwardRef(ModalProviderRegister);
+export default forwardRef(ModalCompanyRegister);
