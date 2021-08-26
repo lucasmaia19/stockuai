@@ -1,10 +1,12 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { TextField } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import { MenuItem, TextField } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -115,14 +117,27 @@ const useStyles = makeStyles((theme) => ({
         color: '#FFFFFF',
         marginRight: '20px',
         '&:hover': { backgroundColor: '#434F7D' }
-    }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 220,
+    },
+    quantCaixa: {
+        width: '220px',
+
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
 }));
 
 const options = [
     {
+        value: '1',
         title: 'Unitário',
     },
     {
+        value: '2',
         title: 'Caixa'
     }
 ]
@@ -131,19 +146,7 @@ function ModalMovementTransf({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
 
-    const [personName, setPersonName] = React.useState([]);
-
-    const handleChange = (event) => {
-        setPersonName(event.target.value);
-    };
-
-    const MenuProps = {
-        PaperProps: {
-            style: {
-                width: 250,
-            },
-        },
-    };
+    const [selectedOptions, setSelectedOptions] = useState('');
 
     return (
 
@@ -225,28 +228,43 @@ function ModalMovementTransf({ openModal, setOpenModal }, ref) {
                             autoComplete="email"
                             autoFocus
                         />
-                        <Autocomplete
-                            type="select"
-                            id="combo-box-demo"
-                            options={options}
-                            getOptionLabel={(option) => option.title}
-                            style={{ width: 222 }}
-                            renderInput={(params) => <TextField {...params} label="Tipo de quantidade" variant="outlined" />}
-                        >
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Unitario ou Caixa</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                value={selectedOptions}
+                                defaultValue=""
+                                onChange={(e) => setSelectedOptions(e.target.value)}
+                                
+                            >
+                                {options.map((option) => (
+                                    <MenuItem
+                                        key={options.value}
+                                        value={option.value}
+                                    >
+                                        {option.title}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        {selectedOptions === '2' ?
+                            <TextField className={classes.quantCaixa}
+                                type="number"
+                                variant="outlined"
+                                margin="normal"
+                                size="small"
+                                required
+                                id="email"
+                                label="Quantidade na caixa"
+                                name="usuario"
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            :
+                            undefined
+                        }
 
-                        </Autocomplete>
-                        
-                        {options.map((option) => (
-                            <div>
-                                {option.title === 'Caixa' ?
-
-                                    <h1>Teste</h1>
-                                    :
-                                    undefined
-                                }
-                            </div>
-                        ))}
-                        
                     </div>
 
                     <div className={classes.btAdicionar}>
@@ -263,7 +281,6 @@ function ModalMovementTransf({ openModal, setOpenModal }, ref) {
                 </div>
             </div>
         </Modal >
-
     )
 }
 

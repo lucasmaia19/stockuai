@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
     btAdicionar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        //padding: '0 1rem 1rem 1remX'
     },
     inputContent: {
         display: 'flex',
@@ -96,10 +95,7 @@ function Stock() {
     }, []);
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
     const [openModal, setOpenModal] = useState(false)
-
-    const [count, setCount] = useState(0);
 
     return (
         <>

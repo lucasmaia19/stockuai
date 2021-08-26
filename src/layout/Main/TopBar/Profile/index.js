@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 function Profile({setAnchorEl}) {
 
     const useStyles = makeStyles((theme) => ({
-        small: 
+        avatar: 
         {
             cursor: 'pointer',
             width: theme.spacing(5),
@@ -18,7 +18,7 @@ function Profile({setAnchorEl}) {
 
     return (
         <div>
-            <Avatar onClick={setAnchorEl} alt="Remy Sharp" src={perfil} className={classes.small} />
+            <Avatar onClick={setAnchorEl} alt="Remy Sharp" src={perfil} className={classes.avatar} />
         </div>
     )
 }

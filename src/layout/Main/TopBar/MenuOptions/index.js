@@ -1,14 +1,16 @@
 import React from 'react';
 import Menu from '@material-ui/core/Menu';
-import { Avatar, Button, MenuItem } from '@material-ui/core'
+import { MenuItem } from '@material-ui/core'
 import { ExitToAppOutlined, PersonOutlineOutlined } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles'
-import perfil from '../../../../assests/perfil.jpg';
 
-function MenuOptions({open, anchorEl, setAnchorEl}) {
+function MenuOptions({ open, anchorEl, setAnchorEl }) {
 
     const redirectProfile = () => {
         window.location.href = "/profile";
+    }
+
+    function handleLogout() {
+        window.location.href = "/login";
     }
 
     return (
@@ -22,7 +24,9 @@ function MenuOptions({open, anchorEl, setAnchorEl}) {
                     <PersonOutlineOutlined />
                     Meu Perfil
                 </MenuItem>
-                <MenuItem >
+                <MenuItem
+                    onClick={handleLogout}
+                >
                     <ExitToAppOutlined />
                     Sair
                 </MenuItem>

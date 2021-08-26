@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef } from 'react';
+import React, { forwardRef } from 'react';
 import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

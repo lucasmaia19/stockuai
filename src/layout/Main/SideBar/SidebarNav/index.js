@@ -1,8 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { List, ListItem, Button, colors, Collapse, Divider } from '@material-ui/core';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+import { List, ListItem, Button, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';

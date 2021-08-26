@@ -81,14 +81,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AccessControl() {
-
-    const outSideRef = useRef()
-    
+      
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
     const [openModal, setOpenModal] = useState(false)
-
-    const [count, setCount] = useState(0);
 
     return (
         <>

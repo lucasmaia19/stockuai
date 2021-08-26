@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -71,7 +71,6 @@ const useStyles = makeStyles((theme) => ({
     btAdicionar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        //padding: '0 1rem 1rem 1remX'
     },
     inputContent: {
         display: 'flex',
@@ -81,13 +80,8 @@ const useStyles = makeStyles((theme) => ({
 
 function RegisterProvider() {
 
-    const outSideRef = useRef()
-
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
     const [openModal, setOpenModal] = useState(false)
-
-    const [count, setCount] = useState(0);
 
     return (
         <>

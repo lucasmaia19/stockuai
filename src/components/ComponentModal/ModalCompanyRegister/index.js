@@ -3,7 +3,7 @@ import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Accordion, AccordionDetails, AccordionSummary, TextareaAutosize, TextField } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, TextField } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({

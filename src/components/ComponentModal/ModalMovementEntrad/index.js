@@ -1,10 +1,12 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import Modal from '..';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { TextField } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
+import InputLabel from '@material-ui/core/InputLabel';
+import { MenuItem, TextField } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -115,14 +117,24 @@ const useStyles = makeStyles((theme) => ({
         color: '#FFFFFF',
         marginRight: '20px',
         '&:hover': { backgroundColor: '#434F7D' }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 220,
+    },
+    quantCaixa: {
+        width: '220px',
+
     }
 }));
 
 const options = [
     {
+        value: '1',
         title: 'Unitário',
     },
     {
+        value: '2',
         title: 'Caixa'
     }
 ]
@@ -130,6 +142,8 @@ const options = [
 function ModalMovementEntrad({ openModal, setOpenModal }, ref) {
 
     const classes = useStyles();
+
+    const [selectedOptions, setSelectedOptions] = useState('');
 
     return (
 
@@ -214,16 +228,40 @@ function ModalMovementEntrad({ openModal, setOpenModal }, ref) {
                             autoFocus
                         />
 
-                        <Autocomplete
-                            type="select"
-                            id="combo-box-demo"
-                            options={options}
-                            getOptionLabel={(option) => option.title}
-                            style={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-                        >
-
-                        </Autocomplete>
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Grouping</InputLabel>
+                            <Select
+                                defaultValue=""
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                onChange={(e) => setSelectedOptions(e.target.value)}
+                                value={selectedOptions}
+                            >
+                                {options.map((option) => (
+                                    <MenuItem
+                                        value={option.value}
+                                    >
+                                        {option.title}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        {selectedOptions === '2' ?
+                            <TextField className={classes.quantCaixa}
+                                type="number"
+                                variant="outlined" 
+                                margin="normal"
+                                size="small"
+                                required
+                                id="email"
+                                label="Quantidade na caixa"
+                                name="usuario"
+                                autoComplete="email"
+                                autoFocus
+                            />
+                            :
+                            undefined
+                        }
 
                     </div>
 

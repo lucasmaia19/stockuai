@@ -86,9 +86,6 @@ function MovementStock() {
     const [openModalEntrad, setOpenModalEntrad] = useState(false)
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-
-    const [count, setCount] = useState(0);
 
     return (
         <>
